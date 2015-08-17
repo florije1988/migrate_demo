@@ -32,9 +32,11 @@ class User(db.Model):
     age = db.Column(db.Integer, server_default="0", nullable=True, default=10)
     record = db.Column(mysql.INTEGER(display_width=20), server_default=text("100"), nullable=False)
     # gender = db.Column(db.Boolean, server_default=sa.sql.expression.false(), nullable=False)
-    gender = db.Column(db.Boolean, server_default=text('false'), nullable=False)
+    # gender = db.Column(db.Boolean, server_default=text('false'), nullable=False)
+    gender = db.Column(db.Boolean, server_default=sa.false(), nullable=False)
 
-    def __repr__(self):
+
+def __repr__(self):
         return "User with name: {name}".format(name=self.name)
 
 
