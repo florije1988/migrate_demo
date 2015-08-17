@@ -27,16 +27,27 @@ manager.add_command('db', MigrateCommand)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=True)
-    age = db.Column(db.Integer, server_default="0", nullable=True)
+    age = db.Column(db.Integer, server_default="0", nullable=True, default=10)
     record = db.Column(mysql.INTEGER(display_width=20), server_default=text("100"), nullable=False)
     # gender = db.Column(db.Boolean, server_default=sa.sql.expression.false(), nullable=False)
+
+    def __repr__(self):
+        return "User with name: {name}".format(name=self.name)
 
 
 @manager.command
 def get_users():
     user_list = User.query.all()
     for user in user_list:
+        print user
         print type(user.id), type(user.name), type(user.age), type(user.record)
+
+
+@manager.command
+def seeds():
+    user = User(name="fuboqing")
+    db.session.add(user)
+    db.session.commit()
 
 
 if __name__ == '__main__':
