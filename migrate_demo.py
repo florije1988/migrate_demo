@@ -32,6 +32,7 @@ class User(db.Model):
     age = db.Column(db.Integer, server_default="0", nullable=True, default=10)
     record = db.Column(mysql.INTEGER(display_width=20), server_default=text("100"), nullable=False)
     # gender = db.Column(db.Boolean, server_default=sa.sql.expression.false(), nullable=False)
+    gender = db.Column(db.Boolean, server_default=text('false'), nullable=False)
 
     def __repr__(self):
         return "User with name: {name}".format(name=self.name)
@@ -51,7 +52,7 @@ def get_users():
     user_list = User.query.all()
     for user in user_list:
         print user
-        print type(user.id), type(user.name), type(user.age), type(user.record)
+        print type(user.id), type(user.name), type(user.age), type(user.record), type(user.gender)
 
 
 @manager.command
