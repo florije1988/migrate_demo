@@ -25,8 +25,10 @@ manager.add_command('db', MigrateCommand)
 
 
 class User(db.Model):
+    __tablename__ = 'user'
+
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=True)
+    name = db.Column(db.String(60), nullable=True)
     age = db.Column(db.Integer, server_default="0", nullable=True, default=10)
     record = db.Column(mysql.INTEGER(display_width=20), server_default=text("100"), nullable=False)
     # gender = db.Column(db.Boolean, server_default=sa.sql.expression.false(), nullable=False)
