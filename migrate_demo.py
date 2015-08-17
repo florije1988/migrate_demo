@@ -37,6 +37,15 @@ class User(db.Model):
         return "User with name: {name}".format(name=self.name)
 
 
+class Article(db.Model):
+    __tablename__ = 'article'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    title = db.Column(db.String(60), nullable=True)
+    content = db.Column(db.String(1024), nullable=True)
+
+
 @manager.command
 def get_users():
     user_list = User.query.all()
