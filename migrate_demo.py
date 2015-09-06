@@ -35,8 +35,7 @@ class User(db.Model):
     # gender = db.Column(db.Boolean, server_default=text('false'), nullable=False)
     gender = db.Column(db.Boolean, server_default=sa.false(), nullable=False)
 
-
-def __repr__(self):
+    def __repr__(self):
         return "User with name: {name}".format(name=self.name)
 
 
